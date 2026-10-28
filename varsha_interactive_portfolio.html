@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <title>Varsha S V | Developer Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --surface: rgba(19, 27, 49, .82);
+      --surface-solid: #131b31;
+      --text: #eef2ff;
+      --muted: #a7b1cc;
+      --accent: #9b8cff;
+      --accent-2: #65e6c3;
+      --border: rgba(185, 198, 235, .16);
+      --shadow: 0 24px 70px rgba(0, 0, 0, .25);
+    }
+    body.light {
+      --bg: #f5f7ff;
+      --surface: rgba(255,255,255,.88);
+      --surface-solid: #ffffff;
+      --text: #18213a;
+      --muted: #5f6984;
+      --accent: #6551d8;
+      --accent-2: #087f68;
+      --border: rgba(41, 54, 91, .15);
+      --shadow: 0 24px 70px rgba(38, 48, 88, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      background:
+        radial-gradient(circle at 85% 8%, rgba(120, 95, 255, .16), transparent 30rem),
+        radial-gradient(circle at 8% 38%, rgba(44, 210, 177, .10), transparent 28rem),
+        var(--bg);
+      color: var(--text); line-height: 1.65; transition: background .25s, color .25s;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(18px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--border);
+    }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font-weight: 850; letter-spacing: -.04em; font-size: 1.15rem; }
+    .brand span { color: var(--accent); }
+    .navlinks { display: flex; align-items: center; gap: 25px; color: var(--muted); font-size: .94rem; }
+    .navlinks a:hover { color: var(--text); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .icon-btn, .menu-btn { border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 12px; padding: 9px 12px; }
+    .menu-btn { display: none; }
+    .hero { min-height: 600px; display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; gap: 50px; padding: 80px 0 70px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--accent-2); font-size: .83rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    .dot { width: 8px; height: 8px; background: var(--accent-2); border-radius: 50%; box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent-2) 16%, transparent); }
+    h1 { font-size: clamp(2.8rem, 6.4vw, 5.3rem); line-height: 1.04; letter-spacing: -.065em; margin: 22px 0; }
+    .gradient { background: linear-gradient(100deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lead { color: var(--muted); font-size: clamp(1.03rem, 1.6vw, 1.2rem); max-width: 650px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 9px; padding: 12px 17px; border-radius: 13px; border: 1px solid var(--border); font-weight: 750; transition: transform .2s, border-color .2s; }
+    .btn:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .btn.primary { color: #101428; background: linear-gradient(110deg, var(--accent), var(--accent-2)); border: 0; }
+    .hero-card { position: relative; border: 1px solid var(--border); background: var(--surface); border-radius: 28px; padding: 26px; box-shadow: var(--shadow); overflow: hidden; }
+    .hero-card:before { content: ""; position: absolute; width: 190px; height: 190px; background: var(--accent); filter: blur(85px); opacity: .2; top: -90px; right: -70px; }
+    .avatar { width: 74px; height: 74px; border-radius: 23px; display: grid; place-items: center; font-size: 1.7rem; font-weight: 900; color: #11172c; background: linear-gradient(135deg, var(--accent), var(--accent-2)); margin-bottom: 20px; }
+    .hero-card h2 { margin: 0 0 4px; font-size: 1.25rem; }
+    .small { color: var(--muted); font-size: .93rem; }
+    .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+    .mini { border: 1px solid var(--border); border-radius: 15px; padding: 14px; }
+    .mini strong { display: block; font-size: 1.15rem; }
+    section { padding: 65px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 28px; }
+    .kicker { color: var(--accent-2); font-size: .78rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+    h2.section-title { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; letter-spacing: -.05em; margin: 8px 0 0; }
+    .section-desc { max-width: 490px; color: var(--muted); margin: 0; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 24px; }
+    .panel h3 { margin: 0 0 10px; }
+    .panel p { color: var(--muted); margin: 0; }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 17px; }
+    .chip { border: 1px solid var(--border); border-radius: 999px; padding: 7px 11px; color: var(--muted); font-size: .86rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 20px; }
+    .filter { border: 1px solid var(--border); color: var(--muted); background: var(--surface); border-radius: 999px; padding: 8px 14px; }
+    .filter.active { color: var(--text); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .project { border: 1px solid var(--border); background: var(--surface); border-radius: 22px; padding: 23px; display: flex; flex-direction: column; min-height: 260px; transition: transform .22s, border-color .22s; }
+    .project:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--accent) 70%, var(--border)); }
+    .project-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .project-icon { width: 45px; height: 45px; border-radius: 14px; display: grid; place-items: center; font-size: 1.25rem; background: color-mix(in srgb, var(--accent) 16%, var(--surface)); }
+    .project h3 { margin: 18px 0 8px; font-size: 1.2rem; }
+    .project p { color: var(--muted); margin: 0 0 15px; }
+    .project .chips { margin-top: auto; margin-bottom: 17px; }
+    .project-link { color: var(--accent-2); font-weight: 750; }
+    .project-link:hover { text-decoration: underline; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .skill-card { border: 1px solid var(--border); background: var(--surface); border-radius: 20px; padding: 21px; }
+    .skill-card h3 { margin: 0 0 12px; }
+    .skill-card ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; color: var(--muted); }
+    .skill-card li:before { content: "↗"; color: var(--accent-2); margin-right: 9px; }
+    .timeline { border-left: 1px solid var(--border); margin-left: 8px; padding-left: 23px; display: grid; gap: 24px; }
+    .timeline-item { position: relative; }
+    .timeline-item:before { content: ""; position: absolute; left: -29px; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 0 5px var(--bg); }
+    .timeline-item h3 { margin: 0 0 4px; }
+    .timeline-item p { color: var(--muted); margin: 0; }
+    .contact { text-align: center; padding: 40px; border: 1px solid var(--border); background: var(--surface); border-radius: 28px; }
+    .contact p { color: var(--muted); max-width: 600px; margin: 14px auto 22px; }
+    footer { padding: 25px 0 40px; color: var(--muted); font-size: .88rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 22px; }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .hidden { display: none !important; }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; gap: 30px; padding-top: 58px; }
+      .hero-card { max-width: 520px; }
+      .section-head { align-items: start; flex-direction: column; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 28px, 1120px); }
+      .navlinks { display: none; position: absolute; top: 71px; left: 0; right: 0; padding: 18px 22px; background: var(--surface-solid); border-bottom: 1px solid var(--border); flex-direction: column; align-items: start; }
+      .navlinks.open { display: flex; }
+      .menu-btn { display: inline-flex; }
+      .hero { padding: 48px 0; }
+      .projects, .about-grid, .skills-grid { grid-template-columns: 1fr; }
+      section { padding: 48px 0; }
+      .contact { padding: 28px 18px; }
+      .nav-actions { margin-left: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *:before, *:after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#home">varsha<span>.</span></a>
+      <div class="navlinks" id="navlinks">
+        <a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">☼</button>
+        <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" id="home">
+        <div class="reveal">
+          <div class="eyebrow"><span class="dot"></span> Open to entry-level opportunities</div>
+          <h1>Hi, I'm Varsha.<br><span class="gradient">I build for the web.</span></h1>
+          <p class="lead">Aspiring software developer with a background in Artificial Intelligence and Data Science. I enjoy building practical applications, learning new technologies, and turning ideas into useful digital experiences.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">Explore my projects <span aria-hidden="true">↗</span></a>
+            <a class="btn" href="#contact">Let's connect</a>
+          </div>
+        </div>
+        <aside class="hero-card reveal" aria-label="Profile summary">
+          <div class="avatar">SV</div>
+          <h2>Varsha S V</h2>
+          <div class="small">AI & Data Science Engineering</div>
+          <div class="mini-grid">
+            <div class="mini"><strong>AI + Web</strong><span class="small">Areas of interest</span></div>
+            <div class="mini"><strong>Builder</strong><span class="small">Learn by doing</span></div>
+            <div class="mini"><strong>Python</strong><span class="small">Programming</span></div>
+            <div class="mini"><strong>Full-stack</strong><span class="small">Career goal</span></div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about">
+        <div class="section-head reveal">
+          <div><div class="kicker">A little about me</div><h2 class="section-title">Curious by nature.<br>Practical by design.</h2></div>
+          <p class="section-desc">I like exploring how software can solve real problems—from accessible mobile tools to data-driven applications. I'm currently strengthening my web development skills and building projects that help me grow as an engineer.</p>
+        </div>
+        <div class="about-grid">
+          <article class="panel reveal">
+            <h3>What I bring</h3>
+            <p>A foundation in Python, SQL, web technologies, and application development, combined with a willingness to learn, debug, and improve through hands-on work.</p>
+            <div class="chips"><span class="chip">Problem solving</span><span class="chip">Teamwork</span><span class="chip">Adaptability</span><span class="chip">Continuous learning</span></div>
+          </article>
+          <article class="panel reveal">
+            <h3>What I'm working toward</h3>
+            <p>Building reliable full-stack applications, understanding the logic behind every feature, and becoming confident explaining technical decisions in interviews.</p>
+            <div class="chips"><span class="chip">Frontend</span><span class="chip">Backend APIs</span><span class="chip">Databases</span><span class="chip">Deployment</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="section-head reveal">
+          <div><div class="kicker">Selected work</div><h2 class="section-title">Projects that solve problems.</h2></div>
+          <p class="section-desc">Use the filters to explore projects by area. Project descriptions and technology lists can be updated as the work evolves.</p>
+        </div>
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+          <button class="filter active" data-filter="all">All projects</button>
+          <button class="filter" data-filter="android">Android</button>
+          <button class="filter" data-filter="ai">AI / ML</button>
+          <button class="filter" data-filter="web">Web / Backend</button>
+        </div>
+        <div class="projects">
+          <article class="project reveal" data-category="android">
+            <div class="project-top"><div class="project-icon">✚</div><span class="chip">Android</span></div>
+            <h3>Pratham-Chikitse</h3>
+            <p>An offline-first emergency first-aid guide designed to make essential guidance more accessible, including Kannada text-to-speech support.</p>
+            <div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Firebase</span></div>
+            <a class="project-link" href="https://github.com/VarshaSV2005/Pratama_chikitse" target="_blank" rel="noreferrer">View source on GitHub ↗</a>
+          </article>
+          <article class="project reveal" data-category="android ai">
+            <div class="project-top"><div class="project-icon">✦</div><span class="chip">Android + AI</span></div>
+            <h3>GrameenLight</h3>
+            <p>An application concept for handloom weavers, with digital support and AI-powered fashion insights.</p>
+            <div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Firestore</span><span class="chip">GenAI</span></div>
+            <a class="project-link" href="https://github.com/VarshaSV2005/GrameenLight" target="_blank" rel="noreferrer">View source on GitHub ↗</a>
+          </article>
+          <article class="project reveal" data-category="ai">
+            <div class="project-top"><div class="project-icon">⌁</div><span class="chip">AI / ML</span></div>
+            <h3>Ransomware Attack Detection</h3>
+            <p>A deep-learning project exploring executable-file classification to distinguish potentially malicious files from safe files.</p>
+            <div class="chips"><span class="chip">Python</span><span class="chip">TensorFlow</span><span class="chip">CNN</span></div>
+            <a class="project-link" href="https://github.com/VarshaSV2005/Image-classification-based-on-ransomware-attack-detection" target="_blank" rel="noreferrer">View source on GitHub ↗</a>
+          </article>
+          <article class="project reveal" data-category="web">
+            <div class="project-top"><div class="project-icon">⌘</div><span class="chip">Full-stack concept</span></div>
+            <h3>Emergency Response Coordination</h3>
+            <p>A full-stack MVP concept for coordinating emergency responses, with location-aware views, API services, and real-time updates.</p>
+            <div class="chips"><span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">WebSockets</span></div>
+            <span class="small">Add your repository and demo URL when ready.</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="section-head reveal">
+          <div><div class="kicker">Technical toolkit</div><h2 class="section-title">Tools I work with.</h2></div>
+          <p class="section-desc">This list reflects technologies you've worked with or studied. Keep it honest and adjust it as your confidence grows.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card reveal"><h3>Languages</h3><ul><li>Python</li><li>SQL</li><li>Java</li><li>Kotlin</li><li>JavaScript fundamentals</li></ul></article>
+          <article class="skill-card reveal"><h3>Web development</h3><ul><li>HTML5 and CSS3</li><li>React fundamentals</li><li>Django</li><li>REST API concepts</li><li>Node.js learning path</li></ul></article>
+          <article class="skill-card reveal"><h3>Data & tools</h3><ul><li>MySQL</li><li>Firebase / Firestore</li><li>Git and GitHub</li><li>TensorFlow and Keras</li><li>VS Code and Android Studio</li></ul></article>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="section-head reveal">
+          <div><div class="kicker">Education & growth</div><h2 class="section-title">Building my foundation.</h2></div>
+        </div>
+        <div class="panel reveal">
+          <div class="timeline">
+            <div class="timeline-item">
+              <h3>B.E. — Artificial Intelligence and Data Science</h3>
+              <p>S J C Institute of Technology, Chikkaballapur · 2022–2026</p>
+            </div>
+            <div class="timeline-item">
+              <h3>Development practice</h3>
+              <p>Hands-on learning across Python full-stack concepts, Android development, APIs, databases, and machine learning projects.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="contact reveal">
+          <div class="kicker">Have an opportunity?</div>
+          <h2 class="section-title">Let's build something useful.</h2>
+          <p>I'm working toward entry-level software development opportunities and always open to connecting with people who enjoy building and learning.</p>
+          <div class="hero-actions" style="justify-content:center">
+            <a class="btn primary" href="https://github.com/VarshaSV2005" target="_blank" rel="noreferrer">GitHub profile ↗</a>
+            <button class="btn" id="copyProfile">Copy portfolio intro</button>
+          </div>
+          <p class="small" id="copyStatus" aria-live="polite"></p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> Varsha S V</span>
+      <span>Designed and built with HTML, CSS & JavaScript.</span>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    if (savedTheme === 'light') body.classList.add('light');
+    themeToggle.textContent = body.classList.contains('light') ? '☾' : '☼';
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light');
+      const theme = body.classList.contains('light') ? 'light' : 'dark';
+      localStorage.setItem('portfolio-theme', theme);
+      themeToggle.textContent = theme === 'light' ? '☾' : '☼';
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const navlinks = document.getElementById('navlinks');
+    menuToggle.addEventListener('click', () => {
+      const open = navlinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.textContent = open ? '✕' : '☰';
+    });
+    navlinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navlinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.textContent = '☰';
+    }));
+
+    const filters = document.querySelectorAll('.filter');
+    const projects = document.querySelectorAll('.project');
+    filters.forEach(button => button.addEventListener('click', () => {
+      filters.forEach(item => item.classList.toggle('active', item === button));
+      const filter = button.dataset.filter;
+      projects.forEach(project => {
+        const categories = project.dataset.category.split(' ');
+        project.classList.toggle('hidden', filter !== 'all' && !categories.includes(filter));
+      });
+    }));
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(item => observer.observe(item));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('copyProfile').addEventListener('click', async () => {
+      const intro = "Hi, I'm Varsha S V, an aspiring software developer with a background in Artificial Intelligence and Data Science. I enjoy building practical applications and learning full-stack development.";
+      const status = document.getElementById('copyStatus');
+      try {
+        await navigator.clipboard.writeText(intro);
+        status.textContent = 'Portfolio introduction copied.';
+      } catch {
+        status.textContent = intro;
+      }
+    });
+  </script>
+</body>
+</html>
